@@ -1,9 +1,11 @@
 <template>
   <div class="main-container">
-    <section class="pokemon-section">
+    <section class="fake" v-show="!namePokemon && !imgPokemon">
+
+    </section>
+    <section class="pokemon-section" v-show="namePokemon && imgPokemon">
       <div class="pokemon-container">
         <div class="pokemon-name">
-          <img class="pokemon-image" :src="imgPokemon" alt="" />
           <h1 class="name-pokemon">{{ namePokemon }}</h1>
         </div>
         <div class="pokemon-details">
@@ -12,65 +14,70 @@
               <img :src=tipo alt="Pokemon Type" />
             </div>
           </div>
-          <div class="pokemon-id">
-            <p># {{ idPokemon }}</p>
-          </div>
         </div>
+      </div>
+      <div class="cont-pokemon-image">
+        <p class="pokemon-id">{{ idPokemon ? "#" + idPokemon : '' }}</p>
+        <img class="pokemon-image" :src="imgPokemon" alt="" />
       </div>
     </section>
     <section class="pokemon-stats-section">
-      <div class="pokemon-finder">
-        <div class="div-finder">
-          <input type="text" placeholder="Buscar Pokemon" id="findPokemon" v-model="findPokemon" />
-          <button @click="find()">Buscar</button>
-        </div>
-      </div>
-      <div class="pokemon-stats">
-        <div class="cont-stats">
-          <div class="screen-pokemon">
-            <div class="div-name-pokemon-screen">
-              <h2>{{ namePokemon }}</h2>
-              <h3>{{ idPokemon }}</h3>
-            </div>
-            <div class="div-image-pokemon-screen">
-              <img :src="imgPokemon" alt="Image Pokemon" />
-            </div>
-            <div class="div-types-pokemon-screen">
-              <div class="pokemon-types-screen">
-                <img src="" alt="Img types" />
-              </div>
-            </div>
+      <div class="cont-pokemon-stats">
+        <div class="pokemon-finder">
+          <div class="div-finder">
+            <input type="text" id="findPokemon" v-model="findPokemon" />
+            <q-btn @click="find()">
+              <q-icon name="las la-search"></q-icon>
+            </q-btn>
           </div>
-          <div class="stats-pokemon">
-            <div class="div-weigth-height">
-              <div class="div-weight">
-                <h3>Peso</h3>
-                <p>(icono) {{ weight }}</p>
+        </div>
+        <div class="pokemon-stats">
+          <div class="cont-stats">
+            <div class="screen-pokemon">
+              <div class="div-name-pokemon-screen">
+                <h2>{{ namePokemon }}</h2>
+                <h3>{{ idPokemon }}</h3>
               </div>
-              <div class="div-height">
-                <h3>Altura</h3>
-                <p>(icono) {{ height }}</p>
+              <div class="div-image-pokemon-screen">
+                <img :src="imgPokemon" alt="Image Pokemon" />
               </div>
-            </div>
-            <div class="div-stats">
-              <div class="div-stats-1">
-                <ul>
-                  <li>(icono) Hp</li>
-                  <li>(icono) Ataque</li>
-                  <li>(icono) Defensa</li>
-                </ul>
-              </div>
-              <div class="div-stats-2">
-                <ul>
-                  <li>(icono) Velocidad</li>
-                  <li>(icono) Ataque Especial</li>
-                  <li>(icono) Defensa Especial</li>
-                </ul>
+              <div class="div-types-pokemon-screen">
+                <div class="pokemon-types-screen">
+                  <img src="" alt="Img types" />
+                </div>
               </div>
             </div>
-            <div class="div-buttons-decoratives">
-              <div class="button-dPad"></div>
-              <div class="button-abcd"></div>
+            <div class="stats-pokemon">
+              <div class="div-weigth-height">
+                <div class="div-weight">
+                  <h3>Peso</h3>
+                  <p>(icono) {{ weight }}</p>
+                </div>
+                <div class="div-height">
+                  <h3>Altura</h3>
+                  <p>(icono) {{ height }}</p>
+                </div>
+              </div>
+              <div class="div-stats">
+                <div class="div-stats-1">
+                  <ul>
+                    <li>(icono) Hp</li>
+                    <li>(icono) Ataque</li>
+                    <li>(icono) Defensa</li>
+                  </ul>
+                </div>
+                <div class="div-stats-2">
+                  <ul>
+                    <li>(icono) Velocidad</li>
+                    <li>(icono) Ataque Especial</li>
+                    <li>(icono) Defensa Especial</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="div-buttons-decoratives">
+                <div class="button-dPad"></div>
+                <div class="button-abcd"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -80,30 +87,59 @@
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('/fonts/Pokemon Solid.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Flexo-Medium";
+  src: url('/fonts/Flexo-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url('fonts/PixelifySans-VariableFont_wght.ttf') format('truetype');
+}
+
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .main-container {
-  padding-top: 150px;
+  padding-top: 50px;
   display: flex;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ff6e6e;
+  align-items: start;
+  justify-content: end;
+  background-color: #c5c8c4;
+}
+
+.fake {
+  height: 39vh;
+  width: 100%;
 }
 
 .pokemon-section {
   height: 100vh;
+  font-family: 'Flexo-Medium', sans-serif;
 }
 
 .pokemon-container {
   display: flex;
+  align-self: start;
   justify-content: center;
   flex-direction: column;
+  background-color: rgb(131, 221, 76);
+  height: auto;
+  width: 100%;
+  padding: 1vw 6vw 1vw 2vw;
+  clip-path: polygon(0 100%, 0 0, 100% 0, 85% 100%);
+  border-left: #0e2206 solid 10px;
 }
 
 .pokemon-name {
@@ -111,21 +147,21 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  height: 10vh;
-  margin: 1em 0 1em 0;
-}
-
-.pokemon-name img {
-  width: 320px;
-  position: absolute;
-  top: 160%;
-  left: 60%;
-  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
-  z-index: 1;
 }
 
 .name-pokemon {
-  letter-spacing: 15px;
+  letter-spacing: 10px;
+  font-size: 12vh;
+  font-weight: bolder;
+}
+
+.cont-pokemon-image img {
+  width: 32vw;
+  position: absolute;
+  top: 17vh;
+  right: 5%;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
+  z-index: 1;
 }
 
 .pokemon-details {
@@ -133,7 +169,7 @@
   align-items: start;
   justify-content: start;
   flex-direction: row;
-  margin-left: 4%;
+  margin-left: 2%;
 }
 
 .pokemon-types {
@@ -141,55 +177,106 @@
   align-content: center;
   justify-content: center;
   flex-direction: row;
+  height: 100%;
 }
 
 .div-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 5px;
 }
 
-.pokemon-id {
-  margin: 3px 0 0 10px;
+.div-type img {
+  width: 8vw;
 }
 
-.pokemon-id p {
+.pokemon-id {
+  font-size: 13vw;
+  margin-top: 5%;
+  position: relative;
   font-weight: bolder;
-  font-size: 1em;
+  display: flex;
+  color: #0e220693;
+  left: 8%;
+  z-index: 1;
+  letter-spacing: 45px;
+  font-family: 'Pokemon Solid', sans-serif;
 }
 
 .pokemon-stats-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
   width: 100%;
+  z-index: 1;
+  font-family: 'Pixelify Sans', sans-serif;
 }
 
-.cont-stats {
+.cont-pokemon-stats {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 90vw;
-  background-color: #ff6e6e;
-}
-
-.screen-pokemon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 
-.stats-pokemon {
+.pokemon-finder {
   display: flex;
-  justify-content: center;
+  align-items: end;
+  justify-content: end;
+  width: 100%;
+  padding-top: 10px;
+  background-color: rgb(130, 16, 39);
+  clip-path: polygon(62% 0, 100% 0, 100% 100%, 37% 100%)
+}
+
+.div-finder {
+  display: flex;
   align-items: center;
-  flex-direction: column;
-  width: 50%;
-  height: 100%;
+  justify-content: end;
+  width: 60%;
+  height: 9vh;
+  background-color: crimson;
+  padding-right: 1vw;
+  clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+
+}
+
+.div-finder input {
+  width: 60%;
+  height: 60%;
+  border: none;
+  font-size: 2vh;
+  color: white;
+  background-color: #1f2131;
+  text-align: center;
+  font-family: 'Pixelify Sans', sans-serif;
+  border-radius: 10px 0 0 10px;
+  padding: 0 1vw;
+}
+
+.div-finder input::placeholder {
+  text-align: center;
+  color: #758c0d;
+}
+
+.div-finder q-btn {
+  height: 60%;
+  background-color: #8c0f0d;
+  border: none;
+  color: white;
+  font-size: 2vh;
+  cursor: pointer;
+}
+
+q-icon {
+  font-size: 2vh;
+}
+
+.pokemon-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(130, 16, 39);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 </style>
 

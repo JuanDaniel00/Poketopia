@@ -10,5 +10,5 @@ export default defineConfig({
     quasar({
       sassVariables: 'src/quasar-variables.sass'
     })
-  ]
+  ],
 })
