@@ -26,7 +26,7 @@
         <div class="pokemon-finder">
           <div class="div-finder">
             <input type="text" id="findPokemon" v-model="findPokemon" />
-            <q-btn @click="find()">
+            <q-btn @click="find()" class="btn">
               <q-icon name="las la-search"></q-icon>
             </q-btn>
           </div>
@@ -36,14 +36,19 @@
             <div class="screen-pokemon">
               <div class="div-name-pokemon-screen">
                 <h2>{{ namePokemon }}</h2>
-                <h3>{{ idPokemon }}</h3>
               </div>
               <div class="div-image-pokemon-screen">
-                <img :src="imgPokemon" alt="Image Pokemon" />
+                <img :src="imgPokemonPixelated" alt="" />
+
               </div>
               <div class="div-types-pokemon-screen">
-                <div class="pokemon-types-screen">
-                  <img src="" alt="Img types" />
+                <div class="types-pokemon-screen-id">
+                  <h3>{{ idPokemon ? "#" + idPokemon : '' }}</h3>
+                </div>
+                <div class="div-types-pokemon">
+                  <div v-for="(tipo, i) in types" :key="i" class="pokemon-types-screen">
+                    <img :src=tipo alt="" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -156,10 +161,10 @@
 }
 
 .cont-pokemon-image img {
-  width: 32vw;
+  width: 29vw;
   position: absolute;
   top: 17vh;
-  right: 5%;
+  right: 7%;
   filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
   z-index: 1;
 }
@@ -192,8 +197,8 @@
 }
 
 .pokemon-id {
-  font-size: 13vw;
-  margin-top: 5%;
+  font-size: 11vw;
+  margin-top: 6%;
   position: relative;
   font-weight: bolder;
   display: flex;
@@ -224,7 +229,7 @@
   width: 100%;
   padding-top: 10px;
   background-color: rgb(130, 16, 39);
-  clip-path: polygon(62% 0, 100% 0, 100% 100%, 37% 100%)
+  clip-path: polygon(61% 0, 100% 0, 100% 100%, 37% 100%)
 }
 
 .div-finder {
@@ -235,6 +240,7 @@
   height: 9vh;
   background-color: crimson;
   padding-right: 1vw;
+  margin-right: .6%;
   clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%, 0 100%);
 
 }
@@ -257,16 +263,18 @@
   color: #758c0d;
 }
 
-.div-finder q-btn {
+.btn {
   height: 60%;
-  background-color: #8c0f0d;
+  background-color: #481010 !important;
   border: none;
   color: white;
   font-size: 2vh;
   cursor: pointer;
+  border-radius: 0 10px 10px 0;
+
 }
 
-q-icon {
+.b q-icon {
   font-size: 2vh;
 }
 
@@ -275,9 +283,114 @@ q-icon {
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 400px;
   background-color: rgb(130, 16, 39);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  padding: .3% 0 .3% 0;
 }
+
+.cont-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: crimson;
+  width: 99%;
+  height: 100%;
+}
+
+.screen-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 35%;
+  height: 90%;
+  padding: 15px;
+  background-color: #1f2131;
+  border-radius: 10px;
+  border: 5px solid #5a110f;
+}
+
+.div-name-pokemon-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.div-name-pokemon-screen h2 {
+  font-size: 3em;
+  color: white;
+  letter-spacing: 5px;
+}
+
+.div-image-pokemon-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+}
+
+.div-image-pokemon-screen img {
+  width: 120px;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
+  position: absolute;
+}
+
+.div-types-pokemon-screen {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.types-pokemon-screen-id h3{
+  font-size: 2em;
+  color: rgb(182, 182, 182);
+  letter-spacing: 5px;
+}
+
+.div-types-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.stats-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 90%;
+  padding: 15px;
+}
+
+.div-weigth-height {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 33%;
+}
+
+.div-weight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+
+.div-height {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
 </style>
 
 <script setup>
@@ -286,6 +399,7 @@ import { ref } from "vue";
 let findPokemon = ref("");
 let namePokemon = ref("");
 let imgPokemon = ref("");
+let imgPokemonPixelated = ref("");
 let idPokemon = ref("");
 let types = ref([]);
 let weight = ref("");
@@ -299,6 +413,7 @@ async function find() {
       `https://pokeapi.co/api/v2/pokemon/${this.findPokemon}`
     );
     imgPokemon.value = res.data.sprites.other["official-artwork"].front_default;
+    imgPokemonPixelated.value = res.data.sprites.other.showdown.front_default;
     namePokemon.value = res.data.name.toUpperCase();
     idPokemon.value = res.data.id;
     res.data.types.forEach((element) => {
