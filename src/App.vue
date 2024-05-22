@@ -56,7 +56,7 @@
               <div class="div-weigth-height">
                 <div class="div-weight">
                   <h3>Peso</h3>
-                  <p>(icono) {{ weight }}</p>
+                  <p> <q-icon v-if="weight" name="las la-weight-hanging"></q-icon> {{ weight }}</p>
                 </div>
                 <div class="div-height">
                   <h3>Altura</h3>
@@ -78,10 +78,6 @@
                     <li>(icono) Defensa Especial</li>
                   </ul>
                 </div>
-              </div>
-              <div class="div-buttons-decoratives">
-                <div class="button-dPad"></div>
-                <div class="button-abcd"></div>
               </div>
             </div>
           </div>
@@ -122,6 +118,131 @@
   align-items: start;
   justify-content: end;
   background-color: #c5c8c4;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card1 {
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 90px 5px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.instagram {
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #cc39a4;
+}
+
+.card2 {
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 90px 5px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.twitter {
+  margin-top: 1.5em;
+  margin-left: -.9em;
+  fill: #03A9F4;
+}
+
+.card3 {
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 5px 90px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.github {
+  margin-top: -.6em;
+  margin-left: 1.2em;
+}
+
+.card4 {
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: white;
+  border-radius: 5px 5px 90px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.discord {
+  margin-top: -.9em;
+  margin-left: -1.2em;
+  fill: #8c9eff;
+}
+
+.card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #cc39a4;
+}
+
+.card1:hover .instagram {
+  fill: white;
+}
+
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #03A9F4;
+}
+
+.card2:hover .twitter {
+  fill: white;
+}
+
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+}
+
+.card3:hover .github {
+  fill: white;
+}
+
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #8c9eff;
+}
+
+.card4:hover .discord {
+  fill: white;
 }
 
 .fake {
@@ -346,7 +467,7 @@
   width: 100%;
 }
 
-.types-pokemon-screen-id h3{
+.types-pokemon-screen-id h3 {
   font-size: 2em;
   color: rgb(182, 182, 182);
   letter-spacing: 5px;
@@ -358,10 +479,10 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .stats-pokemon {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 60%;
   height: 90%;
   padding: 15px;
@@ -372,7 +493,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 33%;
+  width: 40%;
 }
 
 .div-weight {
@@ -380,7 +501,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  
+
 }
 
 .div-height {
@@ -390,6 +511,32 @@
   flex-direction: column;
 }
 
+.div-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 60%;
+}
+
+.div-stats-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.div-stats-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.div-stats ul {
+  list-style: none;
+  color: white;
+}
 
 </style>
 
