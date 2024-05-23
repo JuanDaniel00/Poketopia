@@ -7,8 +7,11 @@
         </div>
         <div class="pokemon-details">
           <div class="pokemon-types">
-            <div v-for="(tipo, i) in types" :key="i" class="div-type">
+            <!-- <div v-for="(tipo, i) in types" :key="i" class="div-type">
               <img :src=tipo alt="Pokemon Type" />
+            </div> -->
+            <div v-for="(tipo, i) in types" :key="i" class="div-type">
+              <img :src="typeIconoPokemon(tipo)" alt="Tipo de Pokémon" />
             </div>
           </div>
         </div>
@@ -320,7 +323,7 @@
 }
 
 .div-image-pokemon-screen img {
-  width: 7vw;
+  width: 5vw;
   filter: drop-shadow(15px 20px 20px rgba(0, 0, 0, 0.63));
 
 }
@@ -521,4 +524,17 @@ function obtenerColoresTipo(tipo) {
   };
   return coloresTipo[tipo] || ["#c5c8c4", "#fff"]; // Predeterminado si no se encuentra el tipo
 }
+
+function typeIconoPokemon(tipo) {
+  switch (tipo) {
+    case "fire":
+      return "/img/tu-icono-fuego-personalizado.svg"; // Reemplaza con tu ruta
+    case "water":
+      return "/img/tu-icono-agua-personalizado.svg";
+    // ... Agrega casos para otros tipos
+    default:
+      return tipo; // Vuelve al icono predeterminado
+  }
+}
+
 </script>
