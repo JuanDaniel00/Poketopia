@@ -1,86 +1,85 @@
 <template>
   <div class="main-container" :style="{ backgroundColor: colorContenedorPrincipal }">
-    <section class="pokemon-section" v-show="namePokemon && imgPokemon">
-      <div class="pokemon-container" :style="{ backgroundColor: colorContenedorPokemon }">
-        <div class="pokemon-name">
-          <h1 class="name-pokemon">{{ namePokemon }}</h1>
-        </div>
-        <div class="pokemon-details">
-          <div class="pokemon-types">
-            <!-- <div v-for="(tipo, i) in types" :key="i" class="div-type">
-              <img :src=tipo alt="Pokemon Type" />
-            </div> -->
-            <div v-for="(tipo, i) in types" :key="i" class="div-type">
-              <img :src="typeIconoPokemon(tipo)" alt="Tipo de Pokémon" />
+    <div class="background-layer">
+      <section class="pokemon-section" v-show="namePokemon && imgPokemon">
+        <div class="pokemon-container" :style="{ backgroundColor: colorContenedorPokemon }">
+          <div class="pokemon-name">
+            <p class="name-pokemon">{{ namePokemon }}</p>
+          </div>
+          <div class="pokemon-details">
+            <div class="pokemon-types">
+              <div v-for="(tipo, i) in types2" :key="i" class="div-type">
+                <img :src=tipo alt="Pokemon Type" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="cont-pokemon-image">
-        <p class="pokemon-id">{{ idPokemon ? "#" + idPokemon : '' }}</p>
-        <img class="pokemon-image" :src="imgPokemon" alt="" />
-      </div>
-    </section>
-    <section class="pokemon-stats-section">
-      <div class="cont-pokemon-stats">
-        <div class="pokemon-finder">
-          <div class="div-finder">
-            <input type="text" id="findPokemon" v-model="findPokemon" />
-            <button @click="find()" class="btn">
-              <q-icon name="las la-search"></q-icon>
-            </button>
-          </div>
+        <div class="cont-pokemon-image">
+          <p class="pokemon-id">{{ idPokemon ? "#" + idPokemon : '' }}</p>
+          <img class="pokemon-image" :src="imgPokemon" alt="" />
         </div>
-        <div class="pokemon-stats">
-          <div class="cont-stats">
-            <div class="screen-pokemon">
-              <div class="div-image-pokemon-screen">
-                <img :src="imgPokemonPixelated" alt="" />
+      </section>
+      <section class="pokemon-stats-section">
+        <div class="cont-pokemon-stats">
+          <div class="pokemon-finder">
+            <div class="div-finder">
+              <input type="text" id="findPokemon" v-model="findPokemon" />
+              <button @click="find()" class="btn">
+                <q-icon name="las la-search"></q-icon>
+              </button>
+            </div>
+          </div>
+          <div class="pokemon-stats">
+            <div class="cont-stats">
+              <div class="screen-pokemon">
+                <div class="div-image-pokemon-screen">
+                  <img :src="imgPokemonPixelated" alt="" />
 
-              </div>
-              <div class="div-types-pokemon-screen">
-                <div class="types-pokemon-screen-id">
-                  <h3>{{ idPokemon ? "#" + idPokemon : '' }}</h3>
                 </div>
-                <div class="div-types-pokemon">
-                  <div v-for="(tipo, i) in types" :key="i" class="pokemon-types-screen">
-                    <img :src=tipo alt="" />
+                <div class="div-types-pokemon-screen">
+                  <div class="types-pokemon-screen-id">
+                    <h3>{{ idPokemon ? "#" + idPokemon : '' }}</h3>
+                  </div>
+                  <div class="div-types-pokemon">
+                    <div v-for="(tipo, i) in types" :key="i" class="pokemon-types-screen">
+                      <img :src=tipo alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="stats-pokemon">
+                <div class="div-weigth-height">
+                  <div class="div-weight">
+                    <h3>Peso</h3>
+                    <p> <q-icon v-if="weight" name="las la-weight-hanging"></q-icon> {{ weight }}</p>
+                  </div>
+                  <div class="div-height">
+                    <h3>Altura</h3>
+                    <p>(icono) {{ height }}</p>
+                  </div>
+                </div>
+                <div class="div-stats">
+                  <div class="div-stats-1">
+                    <ul>
+                      <li>(icono) Hp</li>
+                      <li>(icono) Ataque</li>
+                      <li>(icono) Defensa</li>
+                    </ul>
+                  </div>
+                  <div class="div-stats-2">
+                    <ul>
+                      <li>(icono) Velocidad</li>
+                      <li>(icono) Ataque Especial</li>
+                      <li>(icono) Defensa Especial</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="stats-pokemon">
-              <div class="div-weigth-height">
-                <div class="div-weight">
-                  <h3>Peso</h3>
-                  <p> <q-icon v-if="weight" name="las la-weight-hanging"></q-icon> {{ weight }}</p>
-                </div>
-                <div class="div-height">
-                  <h3>Altura</h3>
-                  <p>(icono) {{ height }}</p>
-                </div>
-              </div>
-              <div class="div-stats">
-                <div class="div-stats-1">
-                  <ul>
-                    <li>(icono) Hp</li>
-                    <li>(icono) Ataque</li>
-                    <li>(icono) Defensa</li>
-                  </ul>
-                </div>
-                <div class="div-stats-2">
-                  <ul>
-                    <li>(icono) Velocidad</li>
-                    <li>(icono) Ataque Especial</li>
-                    <li>(icono) Defensa Especial</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -108,6 +107,16 @@
 
 
 .main-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+  position: relative;
+}
+
+.background-layer {
   padding-top: 50px;
   display: flex;
   width: 100vw;
@@ -115,7 +124,34 @@
   flex-direction: column;
   align-items: start;
   justify-content: end;
-  background-color: #c5c8c4;
+}
+
+.main-container .background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(to bottom right, #848584, #e2dada),
+    /* Degradado (ajusta colores según tipo) */
+    repeating-radial-gradient(circle at 20% 80%, #0e2206, transparent 10px);
+  /* Textura */
+  z-index: 1;
+  /* Detrás del contenido */
+}
+
+.main-container .background-layer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/formas-geometricas.svg');
+  /* Formas geométricas */
+  opacity: 0.2;
+  z-index: 1;
 }
 
 .pokemon-section {
@@ -143,8 +179,8 @@
 }
 
 .name-pokemon {
-  letter-spacing: 10px;
-  font-size: 12vh;
+  letter-spacing: 7px;
+  font-size: 7vh;
   font-weight: bolder;
 }
 
@@ -181,7 +217,7 @@
 }
 
 .div-type img {
-  width: 8vw;
+  width: 2vw;
 }
 
 .pokemon-id {
@@ -296,7 +332,9 @@
   padding: 15px;
   background-color: #1f2131;
   border-radius: 10px;
-  border: 5px solid #5a110f;
+  border: 2px solid #0e2206;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
+  /* Sombra */
 }
 
 .div-name-pokemon-screen {
@@ -416,6 +454,7 @@ let imgPokemon = ref("");
 let imgPokemonPixelated = ref("");
 let idPokemon = ref("");
 let types = ref([]);
+let types2 = ref([]);
 let weight = ref("");
 let height = ref("");
 let stats = ref("[]");
@@ -425,6 +464,7 @@ let colorContenedorPokemon = ref("#fff");  // Color de contenedor predeterminado
 async function find() {
   let res;
   types.value = [];
+  types2.value = [];
   if (this.findPokemon) {
     res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${this.findPokemon}`
@@ -494,6 +534,68 @@ async function find() {
       }
       console.log(types);
     });
+
+    res.data.types.forEach((element) => {
+      switch (element.type.name) {
+        case "fire":
+          types2.value.push("/img/fire.svg");
+          break;
+        case "water":
+          types2.value.push("/img/water.svg");
+          break;
+        case "grass":
+          types2.value.push("/img/grass.svg");
+          break;
+        case "electric":
+          types2.value.push("/img/electric.svg");
+          break;
+        case "ice":
+          types2.value.push("/img/ice.svg");
+          break;
+        case "fighting":
+          types2.value.push("/img/fighting.svg");
+          break;
+        case "poison":
+          types2.value.push("/img/poison.svg");
+          break;
+        case "ground":
+          types2.value.push("/img/ground.svg");
+          break;
+        case "flying":
+          types2.value.push("/img/flying.svg");
+          break;
+        case "psychic":
+          types2.value.push("/img/psychic.svg");
+          break;
+        case "bug":
+          types2.value.push("/img/bug.svg");
+          break;
+        case "rock":
+          types2.value.push("/img/rock.svg");
+          break;
+        case "ghost":
+          types2.value.push("/img/ghost.svg");
+          break;
+        case "dragon":
+          types2.value.push("/img/dragon.svg");
+          break;
+        case "dark":
+          types2.value.push("/img/dark.svg");
+          break;
+        case "steel":
+          types2.value.push("/img/steel.svg");
+          break;
+        case "fairy":
+          types2.value.push("/img/fairy.svg");
+          break;
+        case "normal":
+          types2.value.push("/img/normal.svg");
+          break;
+        default:
+          break;
+      }
+    });
+
     weight.value = res.data.weight;
     height.value = res.data.height;
   }
@@ -522,19 +624,12 @@ function obtenerColoresTipo(tipo) {
     fairy: ["#EE99AC", "#F4BDC9"],
     normal: ["#A8A878", "#C6C6A1"]
   };
-  return coloresTipo[tipo] || ["#c5c8c4", "#fff"]; // Predeterminado si no se encuentra el tipo
-}
-
-function typeIconoPokemon(tipo) {
-  switch (tipo) {
-    case "fire":
-      return "/img/tu-icono-fuego-personalizado.svg"; // Reemplaza con tu ruta
-    case "water":
-      return "/img/tu-icono-agua-personalizado.svg";
-    // ... Agrega casos para otros tipos
-    default:
-      return tipo; // Vuelve al icono predeterminado
+  const backgroundLayer = document.querySelector('.main-container .background-layer');
+  if (backgroundLayer) {
+    backgroundLayer.style.background = `linear-gradient(to bottom right, ${coloresTipo[tipo][0]}, ${coloresTipo[tipo][1]}), repeating-radial-gradient(circle at 20% 80%, #0e2206, transparent 10px)`;
   }
+
+  return coloresTipo[tipo] || ["#c5c8c4", "#fff"];
 }
 
 </script>
