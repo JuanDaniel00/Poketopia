@@ -1,10 +1,7 @@
 <template>
-  <div class="main-container">
-    <section class="fake" v-show="!namePokemon && !imgPokemon">
-
-    </section>
+  <div class="main-container" :style="{ backgroundColor: colorContenedorPrincipal }">
     <section class="pokemon-section" v-show="namePokemon && imgPokemon">
-      <div class="pokemon-container">
+      <div class="pokemon-container" :style="{ backgroundColor: colorContenedorPokemon }">
         <div class="pokemon-name">
           <h1 class="name-pokemon">{{ namePokemon }}</h1>
         </div>
@@ -26,17 +23,14 @@
         <div class="pokemon-finder">
           <div class="div-finder">
             <input type="text" id="findPokemon" v-model="findPokemon" />
-            <q-btn @click="find()" class="btn">
+            <button @click="find()" class="btn">
               <q-icon name="las la-search"></q-icon>
-            </q-btn>
+            </button>
           </div>
         </div>
         <div class="pokemon-stats">
           <div class="cont-stats">
             <div class="screen-pokemon">
-              <div class="div-name-pokemon-screen">
-                <h2>{{ namePokemon }}</h2>
-              </div>
               <div class="div-image-pokemon-screen">
                 <img :src="imgPokemonPixelated" alt="" />
 
@@ -109,145 +103,16 @@
   box-sizing: border-box;
 }
 
+
 .main-container {
   padding-top: 50px;
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
   align-items: start;
   justify-content: end;
   background-color: #c5c8c4;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
-.up {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-}
-
-.down {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-}
-
-.card1 {
-  width: 50px;
-  height: 50px;
-  outline: none;
-  border: none;
-  background: white;
-  border-radius: 90px 5px 5px 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .2s ease-in-out;
-}
-
-.instagram {
-  margin-top: 1.5em;
-  margin-left: 1.2em;
-  fill: #cc39a4;
-}
-
-.card2 {
-  width: 50px;
-  height: 50px;
-  outline: none;
-  border: none;
-  background: white;
-  border-radius: 5px 90px 5px 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .2s ease-in-out;
-}
-
-.twitter {
-  margin-top: 1.5em;
-  margin-left: -.9em;
-  fill: #03A9F4;
-}
-
-.card3 {
-  width: 50px;
-  height: 50px;
-  outline: none;
-  border: none;
-  background: white;
-  border-radius: 5px 5px 5px 90px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .2s ease-in-out;
-}
-
-.github {
-  margin-top: -.6em;
-  margin-left: 1.2em;
-}
-
-.card4 {
-  width: 50px;
-  height: 50px;
-  outline: none;
-  border: none;
-  background: white;
-  border-radius: 5px 5px 90px 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .2s ease-in-out;
-}
-
-.discord {
-  margin-top: -.9em;
-  margin-left: -1.2em;
-  fill: #8c9eff;
-}
-
-.card1:hover {
-  cursor: pointer;
-  scale: 1.1;
-  background-color: #cc39a4;
-}
-
-.card1:hover .instagram {
-  fill: white;
-}
-
-.card2:hover {
-  cursor: pointer;
-  scale: 1.1;
-  background-color: #03A9F4;
-}
-
-.card2:hover .twitter {
-  fill: white;
-}
-
-.card3:hover {
-  cursor: pointer;
-  scale: 1.1;
-  background-color: black;
-}
-
-.card3:hover .github {
-  fill: white;
-}
-
-.card4:hover {
-  cursor: pointer;
-  scale: 1.1;
-  background-color: #8c9eff;
-}
-
-.card4:hover .discord {
-  fill: white;
-}
-
-.fake {
-  height: 39vh;
-  width: 100%;
 }
 
 .pokemon-section {
@@ -260,7 +125,6 @@
   align-self: start;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(131, 221, 76);
   height: auto;
   width: 100%;
   padding: 1vw 6vw 1vw 2vw;
@@ -282,9 +146,9 @@
 }
 
 .cont-pokemon-image img {
-  width: 29vw;
+  width: 25vw;
   position: absolute;
-  top: 17vh;
+  top: 8vh;
   right: 7%;
   filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
   z-index: 1;
@@ -318,8 +182,8 @@
 }
 
 .pokemon-id {
-  font-size: 11vw;
-  margin-top: 6%;
+  font-size: 7vw;
+  margin-top: 7%;
   position: relative;
   font-weight: bolder;
   display: flex;
@@ -332,6 +196,7 @@
 
 .pokemon-stats-section {
   width: 100%;
+  height: 45%;
   z-index: 1;
   font-family: 'Pixelify Sans', sans-serif;
 }
@@ -348,7 +213,7 @@
   align-items: end;
   justify-content: end;
   width: 100%;
-  padding-top: 10px;
+  padding-top: 6px;
   background-color: rgb(130, 16, 39);
   clip-path: polygon(61% 0, 100% 0, 100% 100%, 37% 100%)
 }
@@ -358,7 +223,7 @@
   align-items: center;
   justify-content: end;
   width: 60%;
-  height: 9vh;
+  height: 5vh;
   background-color: crimson;
   padding-right: 1vw;
   margin-right: .6%;
@@ -385,17 +250,17 @@
 }
 
 .btn {
-  height: 60%;
+  height: 66%;
+  width: 5%;
   background-color: #481010 !important;
   border: none;
   color: white;
   font-size: 2vh;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
-
 }
 
-.b q-icon {
+.btn q-icon {
   font-size: 2vh;
 }
 
@@ -423,7 +288,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 35%;
+  width: 20%;
   height: 90%;
   padding: 15px;
   background-color: #1f2131;
@@ -450,14 +315,14 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 80%;
   position: relative;
-
 }
 
 .div-image-pokemon-screen img {
-  width: 120px;
-  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.63));
-  position: absolute;
+  width: 7vw;
+  filter: drop-shadow(15px 20px 20px rgba(0, 0, 0, 0.63));
+
 }
 
 .div-types-pokemon-screen {
@@ -537,7 +402,6 @@
   list-style: none;
   color: white;
 }
-
 </style>
 
 <script setup>
@@ -552,11 +416,14 @@ let types = ref([]);
 let weight = ref("");
 let height = ref("");
 let stats = ref("[]");
+let colorContenedorPrincipal = ref("#c5c8c4"); // Color de fondo predeterminado
+let colorContenedorPokemon = ref("#fff");  // Color de contenedor predeterminado
 
 async function find() {
+  let res;
   types.value = [];
   if (this.findPokemon) {
-    let res = await axios.get(
+    res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${this.findPokemon}`
     );
     imgPokemon.value = res.data.sprites.other["official-artwork"].front_default;
@@ -618,6 +485,7 @@ async function find() {
           break;
         case "normal":
           types.value.push("/img/normal.png")
+          break;
         default:
           break;
       }
@@ -626,5 +494,31 @@ async function find() {
     weight.value = res.data.weight;
     height.value = res.data.height;
   }
+  const tipoPrincipal = res?.data?.types?.[0]?.type?.name || "normal"; // Use 'normal' as default if res is not defined
+  [colorContenedorPrincipal.value, colorContenedorPokemon.value] = obtenerColoresTipo(tipoPrincipal);
+}
+
+function obtenerColoresTipo(tipo) {
+  const coloresTipo = {
+    fire: ["#F08030", "#F5AC78"],
+    water: ["#6890F0", "#9DB7F5"],
+    grass: ["#78C850", "#A7DB8D"],
+    electric: ["#F8D030", "#FAE078"],
+    ice: ["#98D8D8", "#BCE6E6"],
+    fighting: ["#C03028", "#D67873"],
+    poison: ["#A040A0", "#C183C1"],
+    ground: ["#E0C068", "#EBD69D"],
+    flying: ["#A890F0", "#C6B7F5"],
+    psychic: ["#F85888", "#FA92B2"],
+    bug: ["#A8B820", "#C6D16E"],
+    rock: ["#B8A038", "#D1C17D"],
+    ghost: ["#705898", "#A292BC"],
+    dragon: ["#7038F8", "#A27DFA"],
+    dark: ["#705848", "#A29288"],
+    steel: ["#B8B8D0", "#D1D1E0"],
+    fairy: ["#EE99AC", "#F4BDC9"],
+    normal: ["#A8A878", "#C6C6A1"]
+  };
+  return coloresTipo[tipo] || ["#c5c8c4", "#fff"]; // Predeterminado si no se encuentra el tipo
 }
 </script>
