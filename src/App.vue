@@ -146,7 +146,7 @@
 }
 
 .cont-pokemon-image img {
-  width: 25vw;
+  width: 20vw;
   position: absolute;
   top: 8vh;
   right: 7%;
@@ -182,7 +182,7 @@
 }
 
 .pokemon-id {
-  font-size: 7vw;
+  font-size: 6vw;
   margin-top: 7%;
   position: relative;
   font-weight: bolder;
