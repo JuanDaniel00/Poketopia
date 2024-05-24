@@ -50,27 +50,43 @@
               <div class="stats-pokemon">
                 <div class="div-weigth-height">
                   <div class="div-weight">
-                    <h3>Peso</h3>
-                    <p> <q-icon v-if="weight" name="las la-weight-hanging"></q-icon> {{ weight }}</p>
+                    <h4>Peso :</h4>
+                    <p><i v-if="weight" class="fa-solid fa-weight-hanging"></i> {{ weight / 10 + "kg" }} </p>
                   </div>
                   <div class="div-height">
-                    <h3>Altura</h3>
-                    <p>(icono) {{ height }}</p>
+                    <h4>Altura :</h4>
+                    <p><i v-if="height" class="fa-solid fa-ruler-vertical"></i> {{ height / 10 + "m" }}</p>
                   </div>
                 </div>
                 <div class="div-stats">
                   <div class="div-stats-1">
-                    <ul>
-                      <li>(icono) Hp</li>
-                      <li>(icono) Ataque</li>
-                      <li>(icono) Defensa</li>
+                    <ul class="stat-list">
+                      <li v-for="stat in firstStats" :key="stat.stat.name" class="stat-item">
+                        <div class="div-name-stat">
+                          <span class="stat-name"><q-icon :name="getIcon(stat.stat.name)" class="q-mr-sm"></q-icon>{{
+                            stat.stat.name }}</span>
+                          <span class="stat-value">{{ stat.base_stat }}</span>
+                        </div>
+                        <div class="div-bar-stat">
+                          <q-linear-progress :value="stat.base_stat / 150" color="teal" size="25px" rounded
+                            class="q-ml-md" />
+                        </div>
+                      </li>
                     </ul>
                   </div>
                   <div class="div-stats-2">
-                    <ul>
-                      <li>(icono) Velocidad</li>
-                      <li>(icono) Ataque Especial</li>
-                      <li>(icono) Defensa Especial</li>
+                    <ul class="stat-list">
+                      <li v-for="stat in secondStats" :key="stat.stat.name" class="stat-item">
+                        <div class="div-name-stat">
+                          <span class="stat-name"><q-icon :name="getIcon(stat.stat.name)" class="q-mr-sm"></q-icon>{{
+                            stat.stat.name }}</span>
+                          <span class="stat-value">{{ stat.base_stat }}</span>
+                        </div>
+                        <div class="div-bar-stat">
+                          <q-linear-progress :value="stat.base_stat / 150" color="teal" size="25px" rounded
+                            class="q-ml-md" />
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -253,7 +269,7 @@
   justify-content: end;
   width: 100%;
   padding-top: 6px;
-  background-color: rgb(130, 16, 39);
+  background-color: #88061C;
   clip-path: polygon(61% 0, 100% 0, 100% 100%, 37% 100%)
 }
 
@@ -263,7 +279,8 @@
   justify-content: end;
   width: 60%;
   height: 5vh;
-  background-color: crimson;
+  background-color: #DC0A2D;
+  border-radius: 10px;
   padding-right: 1vw;
   margin-right: .6%;
   clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%, 0 100%);
@@ -276,7 +293,7 @@
   border: none;
   font-size: 2vh;
   color: white;
-  background-color: #1f2131;
+  background-color: #232323;
   text-align: center;
   font-family: 'Pixelify Sans', sans-serif;
   border-radius: 10px 0 0 10px;
@@ -291,7 +308,7 @@
 .btn {
   height: 66%;
   width: 5%;
-  background-color: #481010 !important;
+  background-color: #28AAFD !important;
   border: none;
   color: white;
   font-size: 2vh;
@@ -300,7 +317,10 @@
 }
 
 .btn q-icon {
-  font-size: 2vh;
+  font-size: 4vh !important;
+  color: white;
+  cursor: pointer;
+  font-weight: bolder;
 }
 
 .pokemon-stats {
@@ -309,7 +329,7 @@
   justify-content: center;
   width: 100%;
   height: 400px;
-  background-color: rgb(130, 16, 39);
+  background-color: #88061C;
   padding: .3% 0 .3% 0;
 }
 
@@ -317,7 +337,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: crimson;
+  background-color: #DC0A2D;
+  border-radius: 10px;
   width: 99%;
   height: 100%;
 }
@@ -330,9 +351,9 @@
   width: 20%;
   height: 90%;
   padding: 15px;
-  background-color: #1f2131;
+  background-color: #232323;
   border-radius: 10px;
-  border: 2px solid #0e2206;
+  border: 2px solid #0a1635;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
   /* Sombra */
 }
@@ -388,10 +409,12 @@
 
 .stats-pokemon {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  width: 60%;
+  flex-direction: row-reverse;
+  width: 75%;
   height: 90%;
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .div-weigth-height {
@@ -399,22 +422,45 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 40%;
+  width: 25%;
+  background-color: #232323;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
+  border: #0a1635 solid 2px;
 }
 
 .div-weight {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
+  justify-content: start;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
 }
+
+.div-height h4,
+.div-weight h4 {
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.div-height p,
+.div-weight p {
+  font-size: 1.5em;
+  color: white;
+  letter-spacing: 2px;
+}
+
 
 .div-height {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: start;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
 }
 
 .div-stats {
@@ -422,32 +468,81 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  width: 60%;
+  width: 70%;
+  height: 100%;
+  background-color: #232323;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
+  border: #0a1635 solid 2px;
 }
 
 .div-stats-1 {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
+  width: 50%;
 }
 
 .div-stats-2 {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
+  width: 50%;
 }
 
 .div-stats ul {
+  width: 90%;
   list-style: none;
   color: white;
+}
+
+.div-stats li {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.div-name-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stat-name {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 1.3em;
+  letter-spacing: 2px;
+}
+
+.stat-value {
+  font-size: 1.3em;
+  letter-spacing: 2px;
+}
+
+.div-bar-stat {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.q-ml-md {
+  margin-left: 1em;
+  height: 0.6em;
 }
 </style>
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+
 let findPokemon = ref("");
 let namePokemon = ref("");
 let imgPokemon = ref("");
@@ -457,7 +552,11 @@ let types = ref([]);
 let types2 = ref([]);
 let weight = ref("");
 let height = ref("");
-let stats = ref("[]");
+let stats = ref([]);
+
+const firstStats = computed(() => stats.value.slice(0, 3)); // First 3 stats
+const secondStats = computed(() => stats.value.slice(3));  // Remaining stats
+
 let colorContenedorPrincipal = ref("#c5c8c4"); // Color de fondo predeterminado
 let colorContenedorPokemon = ref("#fff");  // Color de contenedor predeterminado
 
@@ -595,11 +694,11 @@ async function find() {
           break;
       }
     });
-
+    stats.value = res.data.stats;
     weight.value = res.data.weight;
     height.value = res.data.height;
   }
-  const tipoPrincipal = res?.data?.types?.[0]?.type?.name || "normal"; // Use 'normal' as default if res is not defined
+  const tipoPrincipal = res?.data?.types?.[0]?.type?.name || "normal";
   [colorContenedorPrincipal.value, colorContenedorPokemon.value] = obtenerColoresTipo(tipoPrincipal);
 }
 
@@ -630,6 +729,18 @@ function obtenerColoresTipo(tipo) {
   }
 
   return coloresTipo[tipo] || ["#c5c8c4", "#fff"];
+}
+
+function getIcon(statName) {
+  const icons = {
+    hp: 'las la-heart',
+    attack: 'las la-fist-raised',
+    defense: 'las la-shield-alt',
+    speed: 'las la-running',
+    'special-attack': 'las la-bolt',
+    'special-defense': 'las la-hat-wizard'
+  };
+  return icons[statName] || 'las la-question'; // Icono por defecto si no se encuentra
 }
 
 </script>
