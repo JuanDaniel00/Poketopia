@@ -32,11 +32,18 @@
           <div class="pokemon-stats">
             <div class="cont-stats">
               <div class="screen-pokemon">
-                <div class="div-image-pokemon-screen">
+                <div class="div-image-pokemon-screen" v-show="idPokemon < 921">
                   <img :src="imgPokemonPixelated" alt="" />
 
                 </div>
-                <div class="div-types-pokemon-screen">
+                <div class="div-types-pokemon-screen" v-if="idPokemon < 921">
+                  <div class="div-types-pokemon">
+                    <div v-for="(tipo, i) in types" :key="i" class="pokemon-types-screen">
+                      <img :src=tipo alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="style-screen" v-else>
                   <div class="types-pokemon-screen-id">
                     <h3>{{ idPokemon ? "#" + idPokemon : '' }}</h3>
                   </div>
@@ -50,12 +57,16 @@
               <div class="stats-pokemon">
                 <div class="div-weigth-height">
                   <div class="div-weight">
-                    <h4>Peso :</h4>
-                    <p><i v-if="weight" class="fa-solid fa-weight-hanging"></i> {{ weight / 10 + "kg" }} </p>
+                    <h4>Peso:</h4>
+                    <div class="weight-data">
+                      <p><i v-if="weight" class="fa-solid fa-weight-hanging"></i> {{ weight / 10 + "kg" }} </p>
+                    </div>
                   </div>
                   <div class="div-height">
-                    <h4>Altura :</h4>
-                    <p><i v-if="height" class="fa-solid fa-ruler-vertical"></i> {{ height / 10 + "m" }}</p>
+                    <h4>Altura:</h4>
+                    <div class="height-data">
+                      <p><i v-if="height" class="fa-solid fa-ruler"></i> {{ height / 10 + "m" }} </p>
+                    </div>
                   </div>
                 </div>
                 <div class="div-stats">
@@ -120,7 +131,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 
 .main-container {
   display: flex;
@@ -201,7 +211,7 @@
 }
 
 .cont-pokemon-image img {
-  width: 20vw;
+  width: 40vh;
   position: absolute;
   top: 8vh;
   right: 7%;
@@ -233,7 +243,7 @@
 }
 
 .div-type img {
-  width: 2vw;
+  width: 8vh;
 }
 
 .pokemon-id {
@@ -251,7 +261,7 @@
 
 .pokemon-stats-section {
   width: 100%;
-  height: 45%;
+  height: 50%;
   z-index: 1;
   font-family: 'Pixelify Sans', sans-serif;
 }
@@ -346,9 +356,9 @@
 .screen-pokemon {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
-  width: 20%;
+  width: 15%;
   height: 90%;
   padding: 15px;
   background-color: #232323;
@@ -382,15 +392,22 @@
 }
 
 .div-image-pokemon-screen img {
-  width: 5vw;
-  filter: drop-shadow(15px 20px 20px rgba(0, 0, 0, 0.63));
-
+  width: 6vw;
+  position: absolute;
 }
 
 .div-types-pokemon-screen {
   display: flex;
-  align-items: space-between;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.style-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -409,12 +426,12 @@
 
 .stats-pokemon {
   display: flex;
-  justify-content: space-around;
+  justify-content: end;
   align-items: center;
   flex-direction: row-reverse;
-  width: 75%;
+  width: 80%;
   height: 90%;
-  padding: 0 15px;
+  gap: 2vw;
 }
 
 .div-weigth-height {
@@ -422,13 +439,14 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 25%;
+  width: 15%;
   background-color: #232323;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
   border: #0a1635 solid 2px;
 }
+
 
 .div-weight {
   display: flex;
@@ -439,16 +457,17 @@
   gap: 10px;
 }
 
+
 .div-height h4,
 .div-weight h4 {
-  font-size: 1.7em;
+  font-size: 1.3em;
   color: white;
   letter-spacing: 2px;
 }
 
 .div-height p,
 .div-weight p {
-  font-size: 1.5em;
+  font-size: 1em;
   color: white;
   letter-spacing: 2px;
 }
@@ -468,12 +487,13 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  width: 70%;
+  width: 80%;
   height: 100%;
   background-color: #232323;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
   border: #0a1635 solid 2px;
+  padding: 15px;
 }
 
 .div-stats-1 {
@@ -503,7 +523,6 @@
   flex-direction: column;
   width: 100%;
   padding: 10px;
-  gap: 10px;
 }
 
 .div-name-stat {
@@ -535,8 +554,58 @@
 
 .q-ml-md {
   margin-left: 1em;
-  height: 0.6em;
+  height: 0.4em;
 }
+
+@media (max-width: 1230px) {
+
+  .div-weigth-height {
+    width: 15%;
+  }
+
+  .div-height {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .div-weight p,
+  i {
+    font-size: 1em;
+  }
+
+  .div-weight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .div-height p,
+  i {
+    font-size: 1em;
+  }
+
+  .div-stats {
+    width: 80%;
+  }
+
+}
+
+@media (max-width: 970px) {
+
+  .div-weight h4,
+  .div-height h4 {
+    display: none;
+  }
+
+}
+
+
+
 </style>
 
 <script setup>
