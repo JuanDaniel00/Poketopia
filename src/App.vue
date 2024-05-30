@@ -135,11 +135,9 @@
 .main-container {
   display: flex;
   width: 100vw;
-  height: 100vh;
   flex-direction: column;
   align-items: start;
   justify-content: end;
-  position: relative;
 }
 
 .background-layer {
@@ -253,7 +251,7 @@
   font-weight: bolder;
   display: flex;
   color: #0e220693;
-  left: 8%;
+  padding-left: 5%;
   z-index: 1;
   letter-spacing: 45px;
   font-family: 'Pokemon Solid', sans-serif;
@@ -261,7 +259,6 @@
 
 .pokemon-stats-section {
   width: 100%;
-  height: 50%;
   z-index: 1;
   font-family: 'Pixelify Sans', sans-serif;
 }
@@ -270,7 +267,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 }
 
 .pokemon-finder {
@@ -338,7 +334,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 400px;
+  height: 40vh;
   background-color: #88061C;
   padding: .3% 0 .3% 0;
 }
@@ -522,7 +518,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 10px;
+  padding-top: 3%;
 }
 
 .div-name-stat {
@@ -556,6 +552,8 @@
   margin-left: 1em;
   height: 0.4em;
 }
+
+
 
 @media (max-width: 1230px) {
 
@@ -602,10 +600,120 @@
     display: none;
   }
 
+  .btn {
+    width: 9%;
+  }
+
+
 }
 
+@media (max-width: 745px) {
+
+  .name-pokemon {
+    font-size: 3vh;
+  }
+
+  .cont-pokemon-image img {
+    width: 25vh;
+    top: 25%
+  }
+
+  .cont-stats {
+    padding: .5em 0;
+    gap: 1em;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .div-stats {
+    width: 100%;
+  }
+
+  .screen-pokemon {
+    width: 45%;
+    height: 100%;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .div-types-pokemon-screen {
+    width: 45%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+  }
+
+  .div-image-pokemon-screen {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+  }
+
+  .div-image-pokemon-screen img {
+    width: 13vw;
+  }
+
+  .stats-pokemon {
+    width: 100%;
+    height: 45%;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .div-weigth-height {
+    height: 20%;
+    width: 45%;
+    padding: 15px;
+    flex-direction: row;
+    margin-top: 1em;
+  }
 
 
+
+
+  .stat-name {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1em;
+    letter-spacing: 2px;
+  }
+
+  .stat-value {
+    font-size: 1em;
+    letter-spacing: 2px;
+  }
+
+
+  .q-ml-md {
+    margin-left: 1em;
+    height: 0.4em;
+  }
+
+
+}
+
+@media (max-width: 440px) {
+  .stats-pokemon {
+    height: 52%;
+  }
+
+  .div-weigth-height {
+    width: 50%;
+  }
+
+  .cont-pokemon-image img {
+    width: 25vh;
+  }
+
+  .name-pokemon {
+    font-size: 3vh;
+  }
+
+}
 </style>
 
 <script setup>
