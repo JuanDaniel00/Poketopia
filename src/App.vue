@@ -709,6 +709,29 @@
     font-size: 3vh;
   }
 
+  .q-ml-md {
+    margin-left: 1em;
+    height: 0.3em;
+  }
+
+
+  .stat-name {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: .8em;
+    letter-spacing: 2px;
+  }
+
+  .stat-value {
+    font-size: .8em;
+    letter-spacing: 2px;
+  }
+
+  .pokemon-types-screen img {
+    width: 9vh;
+  }
+
 }
 </style>
 
