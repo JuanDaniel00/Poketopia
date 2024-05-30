@@ -111,6 +111,7 @@
 </template>
 
 <style scoped>
+
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('../fonts/Pokemon Solid.ttf') format('truetype');
@@ -141,7 +142,7 @@
 }
 
 .background-layer {
-  padding-top: 50px;
+  padding-top: 51px;
   display: flex;
   width: 100vw;
   height: 100vh;
