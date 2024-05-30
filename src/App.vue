@@ -110,7 +110,7 @@
   </div>
 </template>
 
-<style scoed>
+<style scoped>
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('../fonts/Pokemon Solid.ttf') format('truetype');
