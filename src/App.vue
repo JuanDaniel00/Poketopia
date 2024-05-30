@@ -741,9 +741,9 @@ async function find() {
   let res;
   types.value = [];
   types2.value = [];
-  if (this.findPokemon) {
+  if (findPokemon.value) {
     res = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${this.findPokemon}`
+      `https://pokeapi.co/api/v2/pokemon/${findPokemon.value.toLowerCase()}`
     );
     imgPokemon.value = res.data.sprites.other["official-artwork"].front_default;
     imgPokemonPixelated.value = res.data.sprites.other.showdown.front_default;
