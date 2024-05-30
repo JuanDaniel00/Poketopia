@@ -110,15 +110,15 @@
   </div>
 </template>
 
-<style scoped>
+<style scoed>
 @font-face {
   font-family: 'Pokemon Solid';
-  src: url('/fonts/Pokemon Solid.ttf') format('truetype');
+  src: url('fonts/Pokemon Solid.ttf') format('truetype');
 }
 
 @font-face {
   font-family: "Flexo-Medium";
-  src: url('/fonts/Flexo-Medium.ttf') format('truetype');
+  src: url('fonts/Flexo-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -752,58 +752,58 @@ async function find() {
     res.data.types.forEach((element) => {
       switch (element.type.name) {
         case "fire":
-          types.value.push("/img/fire.png");
+          types.value.push("img/fire.png");
           break;
         case "water":
-          types.value.push("/img/agua.png");
+          types.value.push("img/agua.png");
           break;
         case "grass":
-          types.value.push("/img/planta.png");
+          types.value.push("img/planta.png");
           break;
         case "electric":
-          types.value.push("/img/electrico.png");
+          types.value.push("img/electrico.png");
           break;
         case "ice":
-          types.value.push("/img/hielo.png");
+          types.value.push("img/hielo.png");
           break;
         case "fighting":
-          types.value.push("/img/lucha.png");
+          types.value.push("img/lucha.png");
           break;
         case "poison":
-          types.value.push("/img/veneno.png");
+          types.value.push("img/veneno.png");
           break;
         case "ground":
-          types.value.push("/img/tierra.png");
+          types.value.push("img/tierra.png");
           break;
         case "flying":
-          types.value.push("/img/volador.png");
+          types.value.push("img/volador.png");
           break;
         case "psychic":
-          types.value.push("/img/psiquico.png");
+          types.value.push("img/psiquico.png");
           break;
         case "bug":
-          types.value.push("/img/bicho.png");
+          types.value.push("img/bicho.png");
           break;
         case "rock":
-          types.value.push("/img/roca.png");
+          types.value.push("img/roca.png");
           break;
         case "ghost":
-          types.value.push("/img/fantasma.png");
+          types.value.push("img/fantasma.png");
           break;
         case "dragon":
-          types.value.push("/img/dragon.png");
+          types.value.push("img/dragon.png");
           break;
         case "dark":
-          types.value.push("/img/siniestro.png");
+          types.value.push("img/siniestro.png");
           break;
         case "steel":
-          types.value.push("/img/acero.png");
+          types.value.push("img/acero.png");
           break;
         case "fairy":
-          types.value.push("/img/hada.png");
+          types.value.push("img/hada.png");
           break;
         case "normal":
-          types.value.push("/img/normal.png")
+          types.value.push("img/normal.png")
           break;
         default:
           break;
@@ -814,58 +814,58 @@ async function find() {
     res.data.types.forEach((element) => {
       switch (element.type.name) {
         case "fire":
-          types2.value.push("/img/fire.svg");
+          types2.value.push("img/fire.svg");
           break;
         case "water":
-          types2.value.push("/img/water.svg");
+          types2.value.push("img/water.svg");
           break;
         case "grass":
-          types2.value.push("/img/grass.svg");
+          types2.value.push("img/grass.svg");
           break;
         case "electric":
-          types2.value.push("/img/electric.svg");
+          types2.value.push("img/electric.svg");
           break;
         case "ice":
-          types2.value.push("/img/ice.svg");
+          types2.value.push("img/ice.svg");
           break;
         case "fighting":
-          types2.value.push("/img/fighting.svg");
+          types2.value.push("img/fighting.svg");
           break;
         case "poison":
-          types2.value.push("/img/poison.svg");
+          types2.value.push("img/poison.svg");
           break;
         case "ground":
-          types2.value.push("/img/ground.svg");
+          types2.value.push("img/ground.svg");
           break;
         case "flying":
-          types2.value.push("/img/flying.svg");
+          types2.value.push("img/flying.svg");
           break;
         case "psychic":
-          types2.value.push("/img/psychic.svg");
+          types2.value.push("img/psychic.svg");
           break;
         case "bug":
-          types2.value.push("/img/bug.svg");
+          types2.value.push("img/bug.svg");
           break;
         case "rock":
-          types2.value.push("/img/rock.svg");
+          types2.value.push("img/rock.svg");
           break;
         case "ghost":
-          types2.value.push("/img/ghost.svg");
+          types2.value.push("img/ghost.svg");
           break;
         case "dragon":
-          types2.value.push("/img/dragon.svg");
+          types2.value.push("img/dragon.svg");
           break;
         case "dark":
-          types2.value.push("/img/dark.svg");
+          types2.value.push("img/dark.svg");
           break;
         case "steel":
-          types2.value.push("/img/steel.svg");
+          types2.value.push("img/steel.svg");
           break;
         case "fairy":
-          types2.value.push("/img/fairy.svg");
+          types2.value.push("img/fairy.svg");
           break;
         case "normal":
-          types2.value.push("/img/normal.svg");
+          types2.value.push("img/normal.svg");
           break;
         default:
           break;
